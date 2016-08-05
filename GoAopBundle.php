@@ -46,10 +46,9 @@ class GoAopBundle extends Bundle
             // disable temporary to apply AOP loader first
             DebugClassLoader::disable();
         }
-        try
-        {
+        try {
             $this->container->get('goaop.aspect.container');
-        } catch(ServiceNotFoundException $e) {
+        } catch( ServiceNotFoundException $e ) {
             throw new \RuntimeException("`goaop.aspect.container` is not defined, please remove the cache manually and run `cache:warmup`");
         }
         if (!AopComposerLoader::wasInitialized()) {
