@@ -42,7 +42,7 @@ class GoAopExtension extends Extension
         }
         $container->setParameter('goaop.options', $normalizedOptions);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
         if ($config['cache_warmer']) {
