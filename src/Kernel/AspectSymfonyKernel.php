@@ -27,6 +27,7 @@ class AspectSymfonyKernel extends AspectKernel
      */
     protected function configureAop(AspectContainer $container)
     {
+        /* noop */
     }
 
     /**
@@ -37,7 +38,7 @@ class AspectSymfonyKernel extends AspectKernel
     public function init(array $options = [])
     {
         // it is a quick way to check if loader was enabled
-        $wasDebugEnabled = class_exists(DebugClassLoader::class, false);
+        $wasDebugEnabled = class_exists('\Symfony\Component\Debug\DebugClassLoader', false);
         if ($wasDebugEnabled) {
             // disable temporary to apply AOP loader first
             DebugClassLoader::disable();

@@ -29,6 +29,10 @@ class AspectCollectorPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        if (!$container->hasDefinition('goaop.aspect.container')) {
+            return;
+        }
+
         $aspectIds       = $container->findTaggedServiceIds('goaop.aspect');
         $aspectContainer = $container->getDefinition('goaop.aspect.container');
         foreach ($aspectIds as $aspectId => $aspectTags) {
