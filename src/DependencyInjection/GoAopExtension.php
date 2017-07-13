@@ -18,6 +18,21 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 class GoAopExtension extends Extension
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getNamespace()
+    {
+        return 'http://go.aopphp.com/xsd-schema/go-aop-bundle';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
 
     /**
      * Loads a specific configuration.

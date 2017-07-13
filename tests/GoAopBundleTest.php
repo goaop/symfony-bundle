@@ -15,6 +15,9 @@ use Go\Symfony\GoAopBundle\GoAopBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * Class GoAopBundleTest
+ */
 class GoAopBundleTest extends TestCase
 {
     /**

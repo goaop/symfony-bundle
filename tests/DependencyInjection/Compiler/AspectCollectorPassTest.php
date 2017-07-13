@@ -16,6 +16,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * Class AspectCollectorPassTest
+ */
 class AspectCollectorPassTest extends AbstractCompilerPassTestCase
 {
     /**
@@ -39,6 +42,9 @@ class AspectCollectorPassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall('goaop.aspect.container', 'registerAspect', [new Reference('some_other_aspect')], 1);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function registerCompilerPass(ContainerBuilder $container)
     {
         $container->addCompilerPass(new AspectCollectorPass());
