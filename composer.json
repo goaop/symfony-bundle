@@ -24,13 +24,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Go\\Symfony\\GoAopBundle\\": "./src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Go\\Symfony\\GoAopBundle\\Tests\\": "./tests/"
-        }
+            "Go\\Symfony\\GoAopBundle\\": "./"
+        },
+        "exclude-from-classmap": [ "./Tests/" ]
     },
     "extra": {
         "branch-alias": {
