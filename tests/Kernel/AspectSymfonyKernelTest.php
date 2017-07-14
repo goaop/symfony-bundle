@@ -10,6 +10,7 @@
 
 namespace Go\Symfony\GoAopBundle\Tests\Kernel;
 
+use Go\Instrument\ClassLoading\AopComposerLoader;
 use Go\Symfony\GoAopBundle\Kernel\AspectSymfonyKernel;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Debug\DebugClassLoader;
@@ -21,11 +22,13 @@ class AspectSymfonyKernelTest extends TestCase
 {
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function itInitializesAspectKernel()
     {
         require_once __DIR__.'/../Fixtures/mock/DebugClassLoader.php';
 
+        DebugClassLoader::reset();
         DebugClassLoader::enable();
         $this->assertTrue(DebugClassLoader::$enabled);
 
@@ -36,5 +39,24 @@ class AspectSymfonyKernelTest extends TestCase
 
         $this->assertTrue(DebugClassLoader::$enabled);
         $this->assertEquals(['enable', 'disable', 'enable'], DebugClassLoader::$invocations);
+    }
+
+    /**
+     * @test
+     * @runInSeparateProcess
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Initialization of AOP loader was failed, probably due to Debug::enable()
+     */
+    public function itThrowsExceptionWhenIntializationIsImpossible()
+    {
+        require_once __DIR__.'/../Fixtures/mock/DebugClassLoader.php';
+        require_once __DIR__.'/../Fixtures/mock/AopComposerLoader.php';
+
+        AopComposerLoader::$initialized = false;
+
+        AspectSymfonyKernel::getInstance()->init([
+            'appDir' => __DIR__,
+            'cacheDir' => sys_get_temp_dir()
+        ]);
     }
 }
