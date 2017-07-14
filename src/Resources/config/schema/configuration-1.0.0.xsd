@@ -18,37 +18,29 @@
 
                     <xsd:sequence>
 
-                        <xsd:element name="debug" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+                        <xsd:element name="debug" type="xsd:string" minOccurs="0" maxOccurs="1" />
 
                         <xsd:element name="app-dir" type="xsd:string" minOccurs="0" maxOccurs="1" />
 
                         <xsd:element name="cache-dir" type="xsd:string" minOccurs="0" maxOccurs="1" />
 
-                        <xsd:element name="include-paths" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
+                        <xsd:element name="include-path" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
 
-                        <xsd:element name="exclude-paths" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
+                        <xsd:element name="exclude-path" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
 
                         <xsd:element name="container-class" type="xsd:string" minOccurs="0" maxOccurs="1" />
 
                         <xsd:element name="feature" minOccurs="0" maxOccurs="unbounded">
 
-                            <xsd:complexType>
-
-                                <xsd:attribute name="value" use="required">
-
-                                    <xsd:simpleType>
-                                        <xsd:restriction base="xsd:string">
-                                            <xsd:minLength value="1"/>
-                                            <xsd:enumeration value="INTERCEPT_FUNCTIONS" />
-                                            <xsd:enumeration value="INTERCEPT_INITIALIZATIONS" />
-                                            <xsd:enumeration value="INTERCEPT_INCLUDES" />
-                                            <xsd:enumeration value="PREBUILT_CACHE" />
-                                        </xsd:restriction>
-                                    </xsd:simpleType>
-
-                                </xsd:attribute>
-
-                            </xsd:complexType>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="1"/>
+                                    <xsd:enumeration value="INTERCEPT_FUNCTIONS" />
+                                    <xsd:enumeration value="INTERCEPT_INITIALIZATIONS" />
+                                    <xsd:enumeration value="INTERCEPT_INCLUDES" />
+                                    <xsd:enumeration value="PREBUILT_CACHE" />
+                                </xsd:restriction>
+                            </xsd:simpleType>
 
                         </xsd:element>
 

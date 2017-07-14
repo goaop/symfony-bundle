@@ -44,6 +44,68 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     }
 
     /**
+     * @test
+     */
+    public function itCanBeFullyConfiguredViaYml()
+    {
+        $expectedConfiguration = [
+            'cache_warmer' => false,
+            'options' => [
+                'debug' => false,
+                'features' => 7,
+                'app_dir' => '/my/app/dir',
+                'cache_dir' => '/my/cache/dir',
+                'include_paths' => [
+                    '/path/to/include',
+                    '/other/path/to/include',
+                ],
+                'exclude_paths' => [
+                    '/path/to/exclude',
+                    '/other/path/to/exclude',
+                ],
+                'container_class' => 'Container\Class'
+            ]
+        ];
+
+        $sources = [
+            __DIR__.'/../Fixtures/config/full.yml'
+        ];
+
+        $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);
+    }
+
+    /**
+     * @test
+     */
+    public function itCanBeFullyConfiguredViaXml()
+    {
+        $expectedConfiguration = [
+            'cache_warmer' => false,
+            'options' => [
+                'debug' => false,
+                'features' => 7,
+                'app_dir' => '/my/app/dir',
+                'cache_dir' => '/my/cache/dir',
+                'include_paths' => [
+                    '/path/to/include',
+                    '/other/path/to/include',
+                ],
+                'exclude_paths' => [
+                    '/path/to/exclude',
+                    '/other/path/to/exclude',
+                ],
+                'container_class' => 'Container\Class'
+            ]
+        ];
+
+        $sources = [
+            __DIR__.'/../Fixtures/config/full.xml'
+        ];
+
+        $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getContainerExtension()
