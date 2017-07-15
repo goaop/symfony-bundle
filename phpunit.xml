@@ -2,6 +2,10 @@
 
 <phpunit bootstrap="./vendor/autoload.php" colors="true">
 
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/Fixtures/project/app" />
+    </php>
+
     <testsuites>
 
         <testsuite name="Go! AOP Symfony bundle test suite">

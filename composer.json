@@ -24,7 +24,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Go\\Symfony\\GoAopBundle\\": "./"
+            "Go\\Symfony\\GoAopBundle\\": "./",
+            "TestProject\\": "./Tests/Fixtures/project/src/"
         },
         "exclude-from-classmap": [ "./Tests/" ]
     },
