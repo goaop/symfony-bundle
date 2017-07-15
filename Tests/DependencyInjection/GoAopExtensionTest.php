@@ -12,6 +12,7 @@ namespace Go\Symfony\GoAopBundle\Tests\DependencyInjection;
 
 use Go\Symfony\GoAopBundle\DependencyInjection\GoAopExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * Class GoAopExtensionTest
@@ -40,7 +41,9 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
             $this->assertContainerBuilderHasService($id);
         }
 
-        $this->assertEquals(8, count($this->container->getDefinitions()));
+        $this->assertEquals(8, count(array_filter($this->container->getDefinitions(), function($id) {
+            return 0 === strpos($id, 'goaop.');
+        }, ARRAY_FILTER_USE_KEY)));
     }
 
     /**

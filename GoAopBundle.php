@@ -13,6 +13,7 @@ namespace Go\Symfony\GoAopBundle;
 
 use Go\Instrument\ClassLoading\AopComposerLoader;
 use Go\Symfony\GoAopBundle\DependencyInjection\Compiler\AspectCollectorPass;
+use Go\Symfony\GoAopBundle\DependencyInjection\Compiler\DoctrineSupportPass;
 use Symfony\Component\Debug\DebugClassLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -32,6 +33,7 @@ class GoAopBundle extends Bundle
         }
 
         $container->addCompilerPass(new AspectCollectorPass());
+        $container->addCompilerPass(new DoctrineSupportPass());
     }
 
     /**
