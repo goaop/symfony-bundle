@@ -10,17 +10,41 @@
 
 namespace Go\Symfony\GoAopBundle\Tests;
 
+use Go\Aop\Proxy;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Filesystem\Filesystem;
+use TestProject\Application\Main;
 
+/**
+ * Class AspectCacheWarmerTest
+ */
 class AspectCacheWarmerTest extends WebTestCase
 {
+    protected $cacheDir = __DIR__.'/../Fixtures/project/var/cache/test';
+
+    public function setUp()
+    {
+        $filesystem = new Filesystem();
+
+        if ($filesystem->exists($this->cacheDir)) {
+            $filesystem->remove($this->cacheDir);
+        }
+    }
+
     /**
      * @test
      * @runInSeparateProcess
      */
-    public function simple()
+    public function itWarmsUpCache()
     {
+        $this->assertFalse(file_exists($this->cacheDir));
+
         self::bootKernel();
-        $this->assertTrue(true);
+
+        $this->assertTrue(file_exists($this->cacheDir.'/aspect/_proxies/Application/Main.php'));
+        $this->assertTrue(file_exists($this->cacheDir.'/aspect/Application/Main.php'));
+
+        $reflection = new \ReflectionClass(Main::class);
+        $this->assertTrue($reflection->implementsInterface(Proxy::class));
     }
 }
