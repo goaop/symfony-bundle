@@ -12,6 +12,8 @@
 
             <xsd:element name="cache-warmer" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
 
+            <xsd:element name="doctrine-support" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+
             <xsd:element name="options" minOccurs="0" maxOccurs="1">
 
                 <xsd:complexType>

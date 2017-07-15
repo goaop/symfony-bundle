@@ -26,6 +26,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     {
         $expectedConfiguration = [
             'cache_warmer' => true,
+            'doctrine_support' => false,
             'options' => [
                 'features' => 0,
                 'app_dir' => '%kernel.root_dir%/../src',
@@ -50,6 +51,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     {
         $expectedConfiguration = [
             'cache_warmer' => false,
+            'doctrine_support' => true,
             'options' => [
                 'debug' => false,
                 'features' => 7,
@@ -81,6 +83,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     {
         $expectedConfiguration = [
             'cache_warmer' => false,
+            'doctrine_support' => true,
             'options' => [
                 'debug' => false,
                 'features' => 7,

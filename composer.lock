@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "173e3de963f8a842db0c0d022e49527e",
+    "content-hash": "a0f5991414fcf3596b560076048c04d0",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -200,16 +200,16 @@
         },
         {
             "name": "goaop/framework",
-            "version": "2.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goaop/framework.git",
-                "reference": "c6fc1db1e623bbfbf3bc2f165e03250603ff27b8"
+                "reference": "6e2a0fe13c1943db02a67588cfd27692bddaffa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goaop/framework/zipball/c6fc1db1e623bbfbf3bc2f165e03250603ff27b8",
-                "reference": "c6fc1db1e623bbfbf3bc2f165e03250603ff27b8",
+                "url": "https://api.github.com/repos/goaop/framework/zipball/6e2a0fe13c1943db02a67588cfd27692bddaffa5",
+                "reference": "6e2a0fe13c1943db02a67588cfd27692bddaffa5",
                 "shasum": ""
             },
             "require": {
@@ -220,6 +220,7 @@
             },
             "require-dev": {
                 "adlawson/vfs": "^0.12",
+                "doctrine/orm": "^2.5",
                 "phpunit/phpunit": "^4.8",
                 "symfony/console": "^2.7|^3.0"
             },
@@ -258,7 +259,7 @@
                 "library",
                 "php"
             ],
-            "time": "2017-04-25T11:27:19+00:00"
+            "time": "2017-07-12 11:46:25"
         },
         {
             "name": "goaop/parser-reflection",
@@ -3752,6 +3753,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "goaop/framework": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,

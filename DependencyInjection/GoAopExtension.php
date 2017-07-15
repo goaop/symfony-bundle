@@ -64,5 +64,9 @@ class GoAopExtension extends Extension
             $definition = $container->getDefinition('goaop.cache.warmer');
             $definition->addTag('kernel.cache_warmer');
         }
+
+        if ($config['doctrine_support']) {
+            $container->setParameter('goaop.bridge.doctrine_support', true);
+        }
     }
 }

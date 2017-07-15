@@ -1,5 +1,6 @@
 go_aop:
     cache_warmer: false
+    doctrine_support: true
     options:
         debug: false
         app_dir: /my/app/dir

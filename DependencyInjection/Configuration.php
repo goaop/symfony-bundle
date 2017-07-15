@@ -34,6 +34,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('cache_warmer')->defaultTrue()->end()
+                ->booleanNode('doctrine_support')->defaultFalse()->end()
                 ->arrayNode('options')
                     ->addDefaultsIfNotSet()
                     ->fixXmlConfig('feature', 'features')

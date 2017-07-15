@@ -16,7 +16,12 @@ use Go\Instrument\ClassLoading\CachePathManager;
 use Go\Instrument\ClassLoading\SourceTransformingLoader;
 use Go\Instrument\FileSystem\Enumerator;
 use Go\Instrument\Transformer\FilterInjectorTransformer;
+use Go\Symfony\GoAopBundle\Command\CacheWarmupCommand;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Warming the cache with injected advices
@@ -28,36 +33,23 @@ use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
 class AspectCacheWarmer extends CacheWarmer
 {
     /**
-     * Instance of aspect kernel
-     *
-     * @var AspectKernel
+     * @var KernelInterface
      */
-    private $aspectKernel;
+    protected $kernel;
 
     /**
-     * @var CachePathManager
+     * @var CacheWarmupCommand
      */
-    private $cachePathManager;
+    protected $cacheWarmupCommand;
 
-    /**
-     * @param AspectKernel $aspectKernel
-     * @param CachePathManager $cachePathManager
-     */
-    public function __construct(AspectKernel $aspectKernel, CachePathManager $cachePathManager)
+    public function __construct(KernelInterface $kernel, CacheWarmupCommand $cacheWarmupCommand)
     {
-        $this->aspectKernel     = $aspectKernel;
-        $this->cachePathManager = $cachePathManager;
+        $this->kernel = $kernel;
+        $this->cacheWarmupCommand = $cacheWarmupCommand;
     }
 
     /**
-     * Checks whether this warmer is optional or not.
-     *
-     * Optional warmers can be ignored on certain conditions.
-     *
-     * A warmer should return true if the cache can be
-     * generated incrementally and on-demand.
-     *
-     * @return bool true if the warmer is optional, false otherwise
+     * {@inheritdoc}
      */
     public function isOptional()
     {
@@ -65,41 +57,20 @@ class AspectCacheWarmer extends CacheWarmer
     }
 
     /**
-     * Warms up the cache.
-     *
-     * @param string $cacheDir The cache directory
+     * {@inheritdoc}
      */
     public function warmUp($cacheDir)
     {
-        $options     = $this->aspectKernel->getOptions();
-        $oldCacheDir = $this->cachePathManager->getCacheDir();
+        $application = new Application($this->kernel);
+        $application->setAutoExit(false);
 
-        $this->cachePathManager->setCacheDir($cacheDir.'/aspect');
+        $input = new ArrayInput(array(
+            'command' => 'cache:warmup:aop',
+            '--env' => $this->kernel->getEnvironment(),
+        ));
 
-        $enumerator = new Enumerator($options['appDir'], $options['includePaths'], $options['excludePaths']);
-        $iterator   = $enumerator->enumerate();
+        $output = new NullOutput();
 
-        set_error_handler(function ($errno, $errstr, $errfile, $errline) {
-            throw new \ErrorException($errstr, $errno, 0, $errfile, $errline);
-        });
-
-        $errors = array();
-        foreach ($iterator as $file) {
-            $realPath = $file->getRealPath();
-            try {
-                // This will trigger creation of cache
-                file_get_contents(
-                    FilterInjectorTransformer::PHP_FILTER_READ.
-                    SourceTransformingLoader::FILTER_IDENTIFIER.
-                    "/resource=" . $realPath
-                );
-            } catch (\Exception $e) {
-                $errors[$realPath] = $e;
-            }
-        }
-
-        restore_error_handler();
-        $this->cachePathManager->flushCacheState();
-        $this->cachePathManager->setCacheDir($oldCacheDir);
+        $application->run($input, $output);
     }
 }

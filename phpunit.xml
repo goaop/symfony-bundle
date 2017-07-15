@@ -5,17 +5,21 @@
     <testsuites>
 
         <testsuite name="Go! AOP Symfony bundle test suite">
-            <directory suffix="Test.php">./tests/</directory>
+            <directory suffix="Test.php">./Tests/</directory>
         </testsuite>
 
     </testsuites>
 
     <filter>
-
         <whitelist>
-            <directory suffix=".php">./src/</directory>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Resources</directory>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
+                <directory>./build</directory>
+            </exclude>
         </whitelist>
-
     </filter>
 
     <logging>

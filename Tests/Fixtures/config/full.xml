@@ -13,6 +13,8 @@
 
         <go-aop:cache-warmer>false</go-aop:cache-warmer>
 
+        <go-aop:doctrine-support>true</go-aop:doctrine-support>
+
         <go-aop:options>
 
             <go-aop:debug>false</go-aop:debug>
