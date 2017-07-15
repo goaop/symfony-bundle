@@ -86,7 +86,7 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
             'doctrine_support' => true
         ]);
 
-        $this->assertContainerBuilderHasParameter('goaop.bridge.doctrine_support');
+        $this->assertContainerBuilderHasServiceDefinitionWithTag('goaop.bridge.doctrine.metadata_load_interceptor', 'doctrine.event_subscriber');
     }
 
     /**

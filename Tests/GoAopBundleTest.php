@@ -12,7 +12,6 @@ namespace Go\Symfony\GoAopBundle\Tests;
 
 use Go\Instrument\ClassLoading\AopComposerLoader;
 use Go\Symfony\GoAopBundle\DependencyInjection\Compiler\AspectCollectorPass;
-use Go\Symfony\GoAopBundle\DependencyInjection\Compiler\DoctrineSupportPass;
 use Go\Symfony\GoAopBundle\GoAopBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Debug\DebugClassLoader;
@@ -57,7 +56,7 @@ class GoAopBundleTest extends TestCase
             ->willReturn(['GoAopBundle' => 'A bundle']);
 
         $container
-            ->expects($spy = $this->exactly(2))
+            ->expects($spy = $this->exactly(1))
             ->method('addCompilerPass');
 
         $bundle = new GoAopBundle();
@@ -68,9 +67,6 @@ class GoAopBundleTest extends TestCase
 
         $invocation = $spy->getInvocations()[0];
         $this->assertInstanceOf(AspectCollectorPass::class, $invocation->parameters[0]);
-
-        $invocation = $spy->getInvocations()[1];
-        $this->assertInstanceOf(DoctrineSupportPass::class, $invocation->parameters[0]);
     }
 
     /**

@@ -66,7 +66,9 @@ class GoAopExtension extends Extension
         }
 
         if ($config['doctrine_support']) {
-            $container->setParameter('goaop.bridge.doctrine_support', true);
+            $container
+                ->getDefinition('goaop.bridge.doctrine.metadata_load_interceptor')
+                ->addTag('doctrine.event_subscriber');
         }
     }
 }
