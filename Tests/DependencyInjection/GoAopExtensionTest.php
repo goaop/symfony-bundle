@@ -41,7 +41,7 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
             $this->assertContainerBuilderHasService($id);
         }
 
-        $this->assertEquals(8, count(array_filter($this->container->getDefinitions(), function($id) {
+        $this->assertEquals(8, count(array_filter($this->container->getDefinitions(), function ($id) {
             return 0 === strpos($id, 'goaop.');
         }, ARRAY_FILTER_USE_KEY)));
     }
