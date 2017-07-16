@@ -25,20 +25,20 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     public function itHasReasonableDefaults()
     {
         $expectedConfiguration = [
-            'cache_warmer' => true,
+            'cache_warmer'     => true,
             'doctrine_support' => false,
-            'options' => [
-                'features' => 0,
-                'app_dir' => '%kernel.root_dir%/../src',
-                'cache_dir' => '%kernel.cache_dir%/aspect',
-                'debug' => '%kernel.debug%',
+            'options'          => [
+                'features'      => 0,
+                'app_dir'       => '%kernel.root_dir%/../src',
+                'cache_dir'     => '%kernel.cache_dir%/aspect',
+                'debug'         => '%kernel.debug%',
                 'include_paths' => [],
-                'exclude_paths' => []
-            ]
+                'exclude_paths' => [],
+            ],
         ];
 
         $sources = [
-            __DIR__.'/../Fixtures/config/empty.xml'
+            __DIR__ . '/../Fixtures/config/empty.xml',
         ];
 
         $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);
@@ -50,27 +50,27 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     public function itCanBeFullyConfiguredViaYml()
     {
         $expectedConfiguration = [
-            'cache_warmer' => false,
+            'cache_warmer'     => false,
             'doctrine_support' => true,
-            'options' => [
-                'debug' => false,
-                'features' => 7,
-                'app_dir' => '/my/app/dir',
-                'cache_dir' => '/my/cache/dir',
-                'include_paths' => [
+            'options'          => [
+                'debug'           => false,
+                'features'        => 7,
+                'app_dir'         => '/my/app/dir',
+                'cache_dir'       => '/my/cache/dir',
+                'include_paths'   => [
                     '/path/to/include',
                     '/other/path/to/include',
                 ],
-                'exclude_paths' => [
+                'exclude_paths'   => [
                     '/path/to/exclude',
                     '/other/path/to/exclude',
                 ],
-                'container_class' => 'Container\Class'
-            ]
+                'container_class' => 'Container\Class',
+            ],
         ];
 
         $sources = [
-            __DIR__.'/../Fixtures/config/full.yml'
+            __DIR__ . '/../Fixtures/config/full.yml',
         ];
 
         $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);
@@ -82,27 +82,27 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     public function itCanBeFullyConfiguredViaXml()
     {
         $expectedConfiguration = [
-            'cache_warmer' => false,
+            'cache_warmer'     => false,
             'doctrine_support' => true,
-            'options' => [
-                'debug' => false,
-                'features' => 7,
-                'app_dir' => '/my/app/dir',
-                'cache_dir' => '/my/cache/dir',
-                'include_paths' => [
+            'options'          => [
+                'debug'           => false,
+                'features'        => 7,
+                'app_dir'         => '/my/app/dir',
+                'cache_dir'       => '/my/cache/dir',
+                'include_paths'   => [
                     '/path/to/include',
                     '/other/path/to/include',
                 ],
-                'exclude_paths' => [
+                'exclude_paths'   => [
                     '/path/to/exclude',
                     '/other/path/to/exclude',
                 ],
-                'container_class' => 'Container\Class'
-            ]
+                'container_class' => 'Container\Class',
+            ],
         ];
 
         $sources = [
-            __DIR__.'/../Fixtures/config/full.xml'
+            __DIR__ . '/../Fixtures/config/full.xml',
         ];
 
         $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);

@@ -26,7 +26,7 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $services = [
+        $expectedServices = [
             'goaop.aspect.kernel',
             'goaop.aspect.container',
             'goaop.cache.path.manager',
@@ -34,14 +34,14 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
             'goaop.command.warmup',
             'goaop.command.debug_advisor',
             'goaop.command.debug_aspect',
-            'goaop.bridge.doctrine.metadata_load_interceptor'
+            'goaop.bridge.doctrine.metadata_load_interceptor',
         ];
 
-        foreach ($services as $id) {
+        foreach ($expectedServices as $id) {
             $this->assertContainerBuilderHasService($id);
         }
 
-        $this->assertEquals(8, count(array_filter($this->container->getDefinitions(), function ($id) {
+        $this->assertEquals(count($expectedServices), count(array_filter($this->container->getDefinitions(), function ($id) {
             return 0 === strpos($id, 'goaop.');
         }, ARRAY_FILTER_USE_KEY)));
     }
@@ -54,12 +54,12 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
         $this->load();
 
         $this->assertEquals([
-            'features' => 0,
-            'appDir' => '%kernel.root_dir%/../src',
-            'cacheDir' => '%kernel.cache_dir%/aspect',
-            'debug' => '%kernel.debug%',
+            'features'     => 0,
+            'appDir'       => '%kernel.root_dir%/../src',
+            'cacheDir'     => '%kernel.cache_dir%/aspect',
+            'debug'        => '%kernel.debug%',
             'includePaths' => [],
-            'excludePaths' => []
+            'excludePaths' => [],
         ], $this->container->getParameter('goaop.options'));
     }
 
@@ -69,7 +69,7 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
     public function itDisablesCacheWarmer()
     {
         $this->load([
-            'cache_warmer' => false
+            'cache_warmer' => false,
         ]);
 
         $definition = $this->container->getDefinition('goaop.cache.warmer');
@@ -83,7 +83,7 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
     public function itEnablesDoctrineSupport()
     {
         $this->load([
-            'doctrine_support' => true
+            'doctrine_support' => true,
         ]);
 
         $this->assertContainerBuilderHasServiceDefinitionWithTag('goaop.bridge.doctrine.metadata_load_interceptor', 'doctrine.event_subscriber');
@@ -95,7 +95,7 @@ class GoAopExtensionTest extends AbstractExtensionTestCase
     protected function getContainerExtensions()
     {
         return [
-            new GoAopExtension()
+            new GoAopExtension(),
         ];
     }
 }

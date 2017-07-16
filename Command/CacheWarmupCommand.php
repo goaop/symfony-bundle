@@ -16,8 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Go\Console\Command\CacheWarmupCommand as BaseCommand;
 
 /**
- * Class CacheWarmupCommand
- *
  * Console command for warming the cache
  *
  * @codeCoverageIgnore

@@ -16,8 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Go\Console\Command\DebugAdvisorCommand as BaseCommand;
 
 /**
- * Class DebugAdvisorCommand
- *
  * Console command to debug an advisors
  *
  * @codeCoverageIgnore
