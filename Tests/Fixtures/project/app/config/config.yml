@@ -16,7 +16,7 @@ services:
         class: Psr\Log\NullLogger
 
     logging.aspect:
-        class: TestProject\Aspect\LoggingAspect
+        class: Go\Symfony\GoAopBundle\Tests\TestProject\Aspect\LoggingAspect
         arguments: ["@logger"]
         tags:
             - { name: goaop.aspect }

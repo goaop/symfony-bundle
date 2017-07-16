@@ -8,12 +8,12 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Go\Symfony\GoAopBundle\Tests;
+namespace Go\Symfony\GoAopBundle\Tests\CacheWarmer;
 
 use Go\Aop\Proxy;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
-use TestProject\Application\Main;
+use Go\Symfony\GoAopBundle\Tests\TestProject\Application\Main;
 
 /**
  * Class AspectCacheWarmerTest

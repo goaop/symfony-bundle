@@ -1,6 +1,6 @@
 <?php
 
-namespace TestProject\Annotation;
+namespace Go\Symfony\GoAopBundle\Tests\TestProject\Annotation;
 
 /**
  * @Annotation

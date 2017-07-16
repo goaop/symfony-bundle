@@ -13,7 +13,9 @@
         "symfony/phpunit-bridge": "^3.3.4",
         "symfony/debug": "~2.7|~3.0",
         "matthiasnoback/symfony-dependency-injection-test": "~2.0",
-        "doctrine/orm": "~2.5"
+        "doctrine/orm": "~2.5",
+        "symfony/filesystem": "^2.8|^3.0",
+        "symfony/process": "^3.3"
     },
     "license": "MIT",
     "authors": [
@@ -25,7 +27,7 @@
     "autoload": {
         "psr-4": {
             "Go\\Symfony\\GoAopBundle\\": "./",
-            "TestProject\\": "./Tests/Fixtures/project/src/"
+            "Go\\Symfony\\GoAopBundle\\Tests\\TestProject\\": "./Tests/Fixtures/project/src/"
         },
         "exclude-from-classmap": [ "./Tests/" ]
     },

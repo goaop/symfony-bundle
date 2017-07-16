@@ -1,6 +1,6 @@
 <?php
 
-namespace TestProject\Aspect;
+namespace Go\Symfony\GoAopBundle\Tests\TestProject\Aspect;
 
 use Go\Aop\Aspect;
 use Go\Aop\Intercept\MethodInvocation;
@@ -26,7 +26,7 @@ class LoggingAspect implements Aspect
      * Writes a log info before method execution
      *
      * @param MethodInvocation $invocation
-     * @Before("@execution(TestProject\Annotation\Loggable)")
+     * @Before("@execution(Go\Symfony\GoAopBundle\Tests\TestProject\Annotation\Loggable)")
      */
     public function beforeMethod(MethodInvocation $invocation)
     {

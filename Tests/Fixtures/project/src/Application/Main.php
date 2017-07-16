@@ -1,8 +1,8 @@
 <?php
 
-namespace TestProject\Application;
+namespace Go\Symfony\GoAopBundle\Tests\TestProject\Application;
 
-use TestProject\Annotation as Aop;
+use Go\Symfony\GoAopBundle\Tests\TestProject\Annotation as Aop;
 
 class Main
 {
