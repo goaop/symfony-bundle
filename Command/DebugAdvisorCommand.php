@@ -19,6 +19,8 @@ use Go\Console\Command\DebugAdvisorCommand as BaseCommand;
  * Class DebugAdvisorCommand
  *
  * Console command to debug an advisors
+ *
+ * @codeCoverageIgnore
  */
 class DebugAdvisorCommand extends BaseCommand
 {

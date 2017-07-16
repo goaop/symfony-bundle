@@ -19,6 +19,8 @@ use Go\Console\Command\DebugAspectCommand as BaseCommand;
  * Class DebugAspectCommand
  *
  * Console command for querying an information about aspects
+ *
+ * @codeCoverageIgnore
  */
 class DebugAspectCommand extends BaseCommand
 {
