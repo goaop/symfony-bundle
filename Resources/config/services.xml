@@ -30,21 +30,6 @@
             <argument type="service" id="goaop.cache.path.manager"/>
         </service>
 
-        <service id="goaop.command.warmup" public="false" class="Go\Symfony\GoAopBundle\Command\CacheWarmupCommand">
-            <argument type="service" id="goaop.aspect.kernel" />
-            <tag name="console.command" />
-        </service>
-
-        <service id="goaop.command.debug_advisor" public="false" class="Go\Symfony\GoAopBundle\Command\DebugAdvisorCommand">
-            <argument type="service" id="goaop.aspect.kernel" />
-            <tag name="console.command" />
-        </service>
-
-        <service id="goaop.command.debug_aspect" public="false" class="Go\Symfony\GoAopBundle\Command\DebugAspectCommand">
-            <argument type="service" id="goaop.aspect.kernel" />
-            <tag name="console.command" />
-        </service>
-
         <service id="goaop.bridge.doctrine.metadata_load_interceptor" public="false" class="Go\Bridge\Doctrine\MetadataLoadInterceptor" />
 
     </services>
