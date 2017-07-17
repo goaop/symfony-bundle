@@ -51,7 +51,7 @@ class Configuration implements ConfigurationInterface
                                         if (!isset($features[$featureName])) {
                                             throw new InvalidConfigurationException("Uknown feature: {$featureName}");
                                         }
-                                        $featureMask &= $features[$featureName];
+                                        $featureMask |= $features[$featureName];
                                     }
 
                                     return $featureMask;

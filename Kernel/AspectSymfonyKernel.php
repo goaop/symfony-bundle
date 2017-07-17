@@ -10,7 +10,6 @@
 
 namespace Go\Symfony\GoAopBundle\Kernel;
 
-
 use Go\Core\AspectContainer;
 use Go\Core\AspectKernel;
 use Go\Instrument\ClassLoading\AopComposerLoader;
@@ -38,7 +37,7 @@ class AspectSymfonyKernel extends AspectKernel
     public function init(array $options = [])
     {
         // it is a quick way to check if loader was enabled
-        $wasDebugEnabled = class_exists('\Symfony\Component\Debug\DebugClassLoader', false);
+        $wasDebugEnabled = class_exists(DebugClassLoader::class, false);
         if ($wasDebugEnabled) {
             // disable temporary to apply AOP loader first
             DebugClassLoader::disable();
