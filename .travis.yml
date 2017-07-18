@@ -16,4 +16,4 @@ before_install:
 
 install: composer update --prefer-source
 
-script: phpunit --coverage-clover=coverage.clover
+script: vendor/bin/phpunit
