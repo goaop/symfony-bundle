@@ -15,7 +15,8 @@
         "matthiasnoback/symfony-dependency-injection-test": "^1.1.0",
         "doctrine/orm": "^2.5",
         "symfony/filesystem": "^2.8|^3.0",
-        "symfony/process": "^3.3"
+        "symfony/process": "^3.3",
+        "symfony/expression-language": "^3.3"
     },
     "license": "MIT",
     "authors": [
