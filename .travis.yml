@@ -7,6 +7,10 @@ php:
 
 sudo: false
 
+env:
+  - SYMFONY_VERSION=v3
+  - SYMFONY_VERSION=v4
+
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -14,6 +18,8 @@ cache:
 before_install:
   - composer self-update
 
-install: composer update --prefer-source
+install:
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "dunglas/symfony-lock:${SYMFONY_VERSION}" --no-update; fi;
+  - composer update --prefer-source
 
 script: vendor/bin/phpunit --coverage-clover=coverage.clover
