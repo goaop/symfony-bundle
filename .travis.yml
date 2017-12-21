@@ -8,6 +8,7 @@ php:
 sudo: false
 
 env:
+  - SYMFONY_VERSION=v2
   - SYMFONY_VERSION=v3
   - SYMFONY_VERSION=v4
 
